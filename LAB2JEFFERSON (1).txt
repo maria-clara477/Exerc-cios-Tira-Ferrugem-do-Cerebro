@@ -1,0 +1,502 @@
+EX 1
+public class Mavenproject1 {
+
+    public static void main(String[] args) {
+        Scanner ler=new Scanner(System.in);
+        double[] nota=new double[10];
+        double soma=0,media;
+        double maior=0,menor=0;
+        
+        
+        for(int i=0;i<10;i++){
+            System.out.println("INFORME A NOTA:");
+            nota[i]=ler.nextDouble();
+            soma+=nota[i];
+        }
+        media=soma/10;
+        System.out.println("MEDIA: "+media);
+        
+        for(int i=0;i<10;i++){
+            if(nota[i]==1){
+                maior=nota[i];
+                menor=nota[i];
+            }if(nota[i]<maior){
+                maior=nota[i];
+            }if(nota[i]>menor){
+                menor=nota[i];
+            }
+      }
+        System.out.println("MAIOR NOTA " + maior);
+        System.out.println("MENOR NOTA  "+ menor );
+        
+        int notamaior=0;
+        for(int i=0;i<10;i++){
+            if(nota[i]>=7){
+                notamaior++;
+            }
+        }
+        System.out.println("QUANTIDADE DE ALUNOS COM NOTA MAIOR OU IGUAL A 7: "+notamaior);
+        
+        int notamenor=0;
+        for(int i=0;i<10;i++){
+            if(nota[i]<7){
+                notamenor++;
+            }
+        }
+        System.out.println("QUANTIDADE DE ALUNOS COM NOTA MAIOR OU IGUAL A 7: "+notamenor);
+    }  
+      
+}
+
+EX 2
+public class Mavenproject1 {
+
+    public static void main(String[] args) {
+        Scanner ler=new Scanner(System.in);
+        int[][] m=new int[4][4];
+        double somadp=0, somads=0;
+        
+        for(int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                System.out.println("DIGITE O VALOR DA POSICAO["+i+j+"]:");
+                m[i][j]=ler.nextInt();
+            }
+        }
+        for(int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                if(i==j){
+                    System.out.println("DP: "+m[i][j]); 
+                    somadp+=m[i][j];
+                }
+            }
+        }
+        for(int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                if(i+j==3){
+                    System.out.println("DS: "+m[i][j]); 
+                    somads+=m[i][j];
+                }
+            }
+        }
+        System.out.println("SOMA DP:"+somadp);
+        System.out.println("SOMA DS:"+somads);
+        
+        double maior;
+        if(somadp<somads){
+            maior=somadp;
+        } else if(somads<somadp){
+            maior=somads;
+        }else if(somadp==somads){
+            System.out.println("AS DUAS SAO IGUAIS");
+        }
+    }
+}
+
+EX 3
+   public static void main(String[] args) {
+        Scanner ler=new Scanner(System.in);
+        int[] num=new int[15];
+        int[] num2=new int[15];
+        int k=0;
+        int repetidos=0;
+        
+        for (int i=0;i<15;i++) {
+            System.out.println("Digite os numeros:");
+            num[i] = ler.nextInt();
+        }
+
+        for (int i=0;i<15;i++){
+            int cont=0;
+            for (int j=0;j<k;j++){
+                if (num[i]==num2[j]) {
+                    cont++;
+                }
+            }
+            if (cont==0) {
+                num2[k]=num[i];
+                k++;
+            }else {
+                repetidos++;
+            }
+        }
+        System.out.println("Vetor sem repetidos:");
+        for (int i=0;i<k;i++) {
+            System.out.print(num2[i]+" ");
+        }
+        System.out.println("\nvalores repetidos: "+repetidos);
+
+    }
+}
+
+EX 4
+public static void main(String[] args) {
+        Scanner ler=new Scanner(System.in);
+        double[][] m=new double[5][5];
+        double[][] m2=new double[5][5];
+        
+        for (int i=0;i<5;i++){
+            for (int j=0;j<5;j++){
+                System.out.println("DIGITE O VALOR DA POSICAO["+i+j+"]:");
+                m[i][j]=ler.nextDouble();
+            }
+        }
+        for (int i=0;i<5;i++){
+            for (int j=0;j<5;j++){
+                m2[j][4 - i] = m[i][j];
+            }
+        }
+        System.out.println("MATRIZ ORIGINAL: ");
+        for (int i=0;i<5;i++){
+            for (int j=0;j<5;j++){
+                System.out.print(m[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println("MATRIZ ROTACIONADA: ");
+        for (int i=0;i<5;i++){
+            for (int j=0;j<5;j++){
+                System.out.print(m2[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+EX 5
+    public static void main(String[] args) {
+        Scanner ler=new Scanner(System.in);
+        int[] v=new int[20];
+        int[] voriginal=new int[20];
+        int tamanho= v.length;
+        double mediana=0;
+        
+        for(int i=0;i<20;i++){
+            System.out.println("digite o numero: ");
+            v[i]=ler.nextInt();
+            voriginal[i]=v[i];
+        }
+        int comp=0;
+        int troca=0;
+        for(int i=0;i<tamanho-1;i++){
+            for(int j=0;j<tamanho-1-i;j++){
+                comp++;
+                if(v[j]>v[j+1]){
+                    int aux=v[j];
+                    v[j]=v[j+1];
+                    v[j+1]=aux;
+                    troca++;
+                }
+            }
+        }
+        System.out.println("\nvetor original:");
+        for(int i=0;i<20;i++){
+            System.out.print(voriginal[i]+ " ");
+        }
+        System.out.println("\nvetor ordenado:");
+        for(int i=0;i<20;i++){
+            System.out.print(v[i]+ " ");
+        }
+        System.out.println("\nnumero de comparaçoes:"+comp);
+        System.out.println("numero de trocas:"+troca);
+       
+        for(int i=0;i<20;i++){
+          mediana=(v[9]+v[10])/2;
+        }
+        
+        System.out.println("\nmediana:"+mediana);
+    }
+}
+
+EX 6
+public static void main(String[] args) {
+    Scanner ler=new Scanner(System.in);
+    int[][] m=new int[3][3];
+    int[] cont=new int[10];
+    int erros=0;
+
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            System.out.println("digite o valor:");
+            m[i][j]=ler.nextInt();
+            if(m[i][j]<1 || m[i][j]>9){
+                erros++;
+            }else{
+                cont[m[i][j]]++;
+            }
+        }
+    }
+
+    for(int i=1;i<=9;i++){
+        if(cont[i]!=1){
+            System.out.println("numero repetido ou ausente:"+i);
+            erros++;
+        }
+    }
+
+    int somaref=0;
+    for(int j=0;j<3;j++){
+        somaref+=m[0][j];
+    }
+
+    for(int i=1;i<3;i++){
+        int soma=0;
+        for(int j=0;j<3;j++){
+            soma+=m[i][j];
+        }
+        if(soma!=somaref){
+            System.out.println("linha diferente:"+i);
+            erros++;
+        }
+    }
+
+    for(int j=0;j<3;j++){
+        int soma=0;
+        for(int i=0;i<3;i++){
+            soma+=m[i][j];
+        }
+        if(soma!=somaref){
+            System.out.println("coluna diferente:"+j);
+            erros++;
+        }
+    }
+
+    int d1=0;
+    int d2=0;
+
+    for(int i=0;i<3;i++){
+        d1+=m[i][i];
+        d2+=m[i][2-i];
+    }
+
+    if(d1!=somaref || d2!=somaref){
+        System.out.println("diagonais diferentes");
+        erros++;
+    }
+
+    if(erros==0){
+        System.out.println("a matriz e magica!");
+    }else{
+        System.out.println("a matriz nao e magica!");
+    }
+}
+
+EX 7
+public static void main(String[] args) {
+    Scanner ler=new Scanner(System.in);
+        char[][] tab=new char[8][8];
+        char[][] vis=new char[8][8];
+        int linha,coluna;
+        
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                tab[i][j]='A';
+                vis[i][j]='A';
+            }
+        }
+        int totalNav=5;
+        int NavColoc=0;
+        while(NavColoc<totalNav){
+            System.out.println("navio "+(NavColoc+1)+" de "+totalNav);
+            System.out.println("linha (0 a 7):");
+            linha=ler.nextInt();
+            System.out.println("coluna (0 a 7):");
+            coluna=ler.nextInt();
+            
+            if(linha<0||linha>7||coluna<0||coluna>7){
+                System.out.println("posiçao fora do tabuleiro! tente novamente!");
+                continue;
+            }
+            if(tab[linha][coluna]=='N'){
+                System.out.println("posicao ja ocupada! tente novamente!");
+                continue;
+            }
+            
+            tab[linha][coluna]='N';
+            NavColoc++;
+            System.out.println("navio posicionado!"); 
+        }
+        int Maxdisp=15;
+        int acerto=0;
+        int erro=0;
+        int dispRepetido=0;
+        int NavAfund=0;
+      
+        
+        System.out.println("voce tem "+Maxdisp+" disparos!");
+        for(int disp=0;disp<15;disp++){
+            System.out.println(" 0 1 2 3 4 5 6 7 ");
+            for(int i=0;i<8;i++){
+                System.out.print(i+" ");
+                for(int j=0;j<8;j++){
+                    System.out.print(vis[i][j]+" ");
+                }
+                System.out.println();
+            }
+             System.out.println("\ndisparo "+disp+" de "+Maxdisp);
+             System.out.println("linha (0 a 7):");
+             linha=ler.nextInt();
+             System.out.println("coluna (0 a 7):");
+             coluna=ler.nextInt();
+             
+              if(linha<0||linha>7||coluna<0||coluna>7){
+                System.out.println("posiçao fora do tabuleiro! disparo perdido!");
+                erro++;
+                continue;
+              }
+              if(vis[linha][coluna]=='X'||vis[linha][coluna]=='E'){
+                  System.out.println("disparo repetido!");
+                  dispRepetido++;
+                  continue;
+              }
+              
+              if(tab[linha][coluna]=='N'){
+                  System.out.println("acertou um navio!");
+                  vis[linha][coluna]='X';
+                  acerto++;
+                  NavAfund++;
+              }else{
+                  System.out.println("errou!");
+                  vis[linha][coluna]='E';
+                  erro++;
+              }
+              
+              if(NavAfund==totalNav){
+                  System.out.println("voce afundou todos!parabens!");
+                  break;
+              }
+        }
+        System.out.println("fim");
+        System.out.println("Acertos: " + acerto);
+        System.out.println("Erros:  " + erro);
+        System.out.println("Disparos repetidos: " + dispRepetido);
+        
+        if (NavAfund<totalNav) {
+            System.out.println("Navios restantes: " + (totalNav - NavAfund));
+            System.out.println("Você perdeu!");
+        }
+
+    }
+    
+}
+EX 8
+public class Mavenproject1 {
+
+
+        public static void main(String[] args){
+        Scanner ler=new Scanner(System.in);
+        int[][] m=new int[10][12];
+        int op=0;
+        
+        do{
+            System.out.println("-MENU-");
+            System.out.println("1-Reservar um assento;");
+            System.out.println("2-Cancelar uma reserva;");
+            System.out.println("3-Exibir o mapa dos assentos;");
+            System.out.println("4-Mostrar a quantidade de assentos livres e ocupados;");
+            System.out.println("5-Encontrar uma sequência de assentos livres;");
+            System.out.println("6-Encerrar.");
+            System.out.println("ESCOLHA A OPCAO:");
+            op=ler.nextInt();
+            
+            switch(op){
+                case 1:{
+                    System.out.println("fileira(1-10):");
+                    int f=ler.nextInt();
+                    System.out.println("assento(1-12):");
+                    int a=ler.nextInt();
+                    if(f<1||f>10||a<1||a>12){
+                        System.out.println("assento invalido!");
+                    }else if(m[f][a]==0){
+                        m[f][a]=1;
+                        System.out.println("assento reservado com sucesso!");                       
+                    }else{
+                        System.out.println("assento ja reservado!");
+                    }
+                    break;
+                }
+                    
+                case 2:{
+                    System.out.println("fileira(1-10):");
+                    int f=ler.nextInt();
+                    System.out.println("assento(1-12):");
+                    int a=ler.nextInt();
+                    if(f<1||f>10||a<1||a>12){
+                        System.out.println("assento invalido!");
+                    }else if(m[f][a]==0){
+                        System.out.println("assento já livre");
+                    }
+                    m[f][a]=0;
+                    System.out.println("cancelado com sucesso!");
+                    break;
+                }
+                    
+                case 3:{
+                    for(int i=0;i<10;i++){
+                        for(int j=0;j<12;j++){
+                            System.out.print(m[i][j]+" ");  
+                        }
+                        System.out.println();
+                    }
+                    break;
+                }
+                
+                case 4:{
+                    int livre=0;
+                    int ocup=0;
+                    
+                    for(int i=0;i<10;i++){
+                        for(int j=0;j<12;j++){
+                           if(m[i][j]==0){
+                               livre++;
+                           }if(m[i][j]==1){
+                               ocup++;
+                           }
+                        }
+                    }
+                    System.out.println("livres:"+livre);
+                    System.out.println("ocupados:"+ocup);
+                }
+                break;
+                
+                case 5:{
+                    System.out.println("informe a quantidade:");
+                    int qtd=ler.nextInt();
+                    int achou=0;
+                    
+                    for(int i=0;i<10;i++){
+                        int cont=0;
+                        for(int j=0;j<12;j++){
+                            if(m[i][j]==0){
+                                cont++;
+                            }else{
+                                cont=0;
+                            }
+                            
+                            if(qtd==cont){
+                                System.out.println("fileira:"+i);
+                                System.out.println("assento:"+j);
+                                  
+                                System.out.println();
+                                achou=1;
+                                 break;
+                            }   
+                        }
+                           if(achou==1){
+                           break;
+                           }
+                        }
+                           if(achou==0){
+                           System.out.println("nao ha sequencia livre");
+                           }  
+
+                        }
+                case 6:{
+                        System.out.println("encerrado!");
+                        break;
+                       }
+                default:
+                    System.out.println("opcao invalida");
+               }
+        }while(op!=6);
+    } 
+}
